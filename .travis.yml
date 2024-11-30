@@ -9,7 +9,7 @@ before_install: # 스크립트를 실행할 수 있는 환경 구성
   - echo "start Creating an image with dockerfile"  # 1 이미지 생성
   - docker build -t hypark023/docker-react-app -f Dockerfile.dev . # 2. 빌드
 
-script: # 실행할 스크립트 (테스트)
+script: # 실행할 스크립트 (테스트)zz
   - docker run -e CI=true hypark023/docker-react-app npm test -- --coverage
 
 after_success:
