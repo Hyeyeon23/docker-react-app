@@ -1,0 +1,16 @@
+sudo: required # 관리자 권한
+
+language: generic # 언어 플랫폼 선택 
+
+services: 
+  - docker
+
+before_install: # 스크립트를 실행할 수 있는 환경 구성 
+  - echo "start Creating an image with dockerfile"  # 1 이미지 생성
+  - docker build -t hypark023/docker-react-app -f Dockerfile.dev . # 2. 빌드
+
+script: # 실행할 스크립트 (테스트)
+  - docker run -e CI=true hypark023/docker-react-app npm test -- --coverage
+
+after_success:
+  - echo "Test Success"
